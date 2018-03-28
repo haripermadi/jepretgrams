@@ -21,6 +21,7 @@ module.exports = {
     let input = {
       caption: req.body.caption,
       image: req.body.image
+      // image: req.file.cloudStoragePublicUrl,npm install vuex
     }
     let photo = new Photo(input)
     photo.save().then(newPhoto=>{

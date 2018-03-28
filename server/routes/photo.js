@@ -1,39 +1,20 @@
 var express = require('express');
 var router = express.Router();
-const {getPhoto, postPhoto, removePhoto, updateCaption} = require('../controllers/photoController')
-/* GET users listing. */
-var MongoClient = require('mongodb').MongoClient;
-var assert = require('assert');
 var multer = require('multer');
-var storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, 'public/images/uploads')
-    },
-    filename: (req, file, cb) => {
-      cb(null, file.fieldname + '-' + Date.now())
-    }
-});
-var upload = multer({storage: storage});
-router.post('/fileUpload', upload.single('image'), (req, res, next) => {
-    MongoClient.connect(url, (err, db) => {
-        assert.equal(null, err);
-        insertDocuments(db, 'public/images/uploads/' + req.file.filename, () => {
-            db.close();
-            res.json({'message': 'File uploaded successfully'});
-        });
-    });
-});
+const {getPhoto, postPhoto, removePhoto, updateCaption} = require('../controllers/photoController')
+const {sendUploadToGCS} = require('../middleware/uploadGCS')
+const {authUser} = require('../middleware/auth')
 
-var insertDocuments = function(db, filePath, callback) {
-    var collection = db.collection('user');
-    collection.insertOne({'imagePath' : filePath }, (err, result) => {
-        assert.equal(err, null);
-        callback(result);
-    });
-}
+const upload = multer({
+  storage:multer.memoryStorage(),
+  limits: {
+    fileSize: 5 * 1024 * 1024
+  }
+})
 
 router.get('/', getPhoto)
 router.post('/',postPhoto)
+// router.post('/',upload.single('image'),sendUploadToGCS,postPhoto)
 router.put('/:id', updateCaption)
 router.delete('/:id',removePhoto)
 

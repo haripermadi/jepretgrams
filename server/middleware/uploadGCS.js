@@ -1,13 +1,13 @@
 const Storage = require('@google-cloud/storage');
 const config = {
-  CLOUD_BUCKET: 'jepretgram.haripermadi.com ',
-  PROJECT_ID: 'todo-fancy-198007',
+  CLOUD_BUCKET: 'jepret.haripermadi.com ',
+  PROJECT_ID: 'peak-radius-197913',
 }
 
 // prepare storage
 const storage = Storage({
   projectId: config.PROJECT_ID,
-  keyFilename: 'Todo fancy-4b8adb92abc0.json'
+  keyFilename: 'My First Project-5fa1b16f8165.json'
 });
 
 // set which bucket
