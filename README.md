@@ -24,11 +24,14 @@ npm run dev
 
 **Route** | **HTTP** | **Descrition**
 ----------|----------|---------------
+/users/signup | POST | sign up user
+/users/login | GET | login user
 /photo | GET | Get all photos
 /photo | POST | Add new photo
-/photo/:id | PUT | Edit a photo
+/photo/:id | PUT | Edit caption
 /photo/:id | DELETE | Remove a photo
-/photo/:id/love | PUT | Love photo
+/likephoto/:id | POST | Love photo
+
 
 
 
