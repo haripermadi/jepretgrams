@@ -13,9 +13,9 @@ const upload = multer({
 })
 
 router.get('/', getPhoto)
-router.post('/',postPhoto)
+router.post('/',authUser, postPhoto)
 // router.post('/',upload.single('image'),sendUploadToGCS,postPhoto)
-router.put('/:id', updateCaption)
-router.delete('/:id',removePhoto)
+router.put('/:id',authUser, updateCaption)
+router.delete('/:id',authUser,removePhoto)
 
 module.exports = router;

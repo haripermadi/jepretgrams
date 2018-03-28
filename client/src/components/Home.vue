@@ -41,11 +41,11 @@
         <form>
           <div class="form-group">
             <label for="exampleInputEmail1">Caption</label>
-            <input type="text" class="form-control" placeholder="Enter your name" v-model="newpost.caption">
+            <input type="text" class="form-control" placeholder="caption.." v-model="newpost.caption">
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Image</label>
-            <input type="text" class="form-control" placeholder="Enter email" v-model="newpost.image">
+            <input type="text" class="form-control" placeholder="image url" v-model="newpost.image">
           </div>
         </form>
         </div>
